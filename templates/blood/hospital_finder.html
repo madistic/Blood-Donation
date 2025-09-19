@@ -1,0 +1,282 @@
+{% extends 'blood/navbar.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        margin-top: 80px;
+        background: var(--bg-primary, #f8fafc);
+        transition: background-color 0.3s ease;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .hospital-finder-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--text-primary, #1e293b);
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--primary-500, #ef4444), var(--blue-500, #3b82f6));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .page-subtitle {
+        color: var(--text-secondary, #64748b);
+        font-size: 1.1rem;
+    }
+
+    .controls-card {
+        background: var(--card-bg, #ffffff);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        border: 1px solid var(--border-color, #e2e8f0);
+    }
+
+    .controls-row {
+        display: flex;
+        gap: 1rem;
+        align-items: end;
+        flex-wrap: wrap;
+    }
+
+    .control-group {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .control-label {
+        display: block;
+        font-weight: 600;
+        color: var(--text-primary, #374151);
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .control-input, .control-select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--border-color, #e5e7eb);
+        border-radius: 8px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .control-input:focus, .control-select:focus {
+        outline: none;
+        border-color: var(--primary-500, #ef4444);
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .btn-location {
+        background: linear-gradient(135deg, var(--primary-500, #ef4444), var(--primary-600, #dc2626));
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-location:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-location:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .btn-notify {
+        background: linear-gradient(135deg, var(--blue-500, #3b82f6), var(--blue-600, #2563eb));
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-notify:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-notify:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .map-container {
+        background: var(--card-bg, #ffffff);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        border: 1px solid var(--border-color, #e2e8f0);
+    }
+
+    #hospitalMap {
+        height: 400px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid var(--border-color, #e5e7eb);
+    }
+
+    .results-container {
+        background: var(--card-bg, #ffffff);
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        border: 1px solid var(--border-color, #e2e8f0);
+    }
+
+    .loading-spinner {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-muted, #6b7280);
+    }
+
+    .loading-spinner i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    /* Dark theme support */
+    [data-theme="dark"] .controls-card,
+    [data-theme="dark"] .map-container,
+    [data-theme="dark"] .results-container {
+        background: var(--bg-secondary, #1e293b);
+        border-color: var(--border-color, #334155);
+    }
+
+    [data-theme="dark"] .control-input,
+    [data-theme="dark"] .control-select {
+        background: var(--bg-tertiary, #334155);
+        color: var(--text-primary, #f8fafc);
+        border-color: var(--border-color, #475569);
+    }
+
+    @media (max-width: 768px) {
+        .controls-row {
+            flex-direction: column;
+        }
+        
+        .control-group {
+            min-width: auto;
+        }
+        
+        #hospitalMap {
+            height: 300px;
+        }
+    }
+</style>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<div class="hospital-finder-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">🏥 Find Nearby Hospitals</h1>
+        <p class="page-subtitle">Locate partner hospitals with blood bank services near you</p>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-card">
+        <div class="controls-row">
+            <div class="control-group">
+                <label class="control-label">Search Radius</label>
+                <select id="searchRadius" class="control-select">
+                    <option value="5">5 km</option>
+                    <option value="10" selected>10 km</option>
+                    <option value="20">20 km</option>
+                    <option value="50">50 km</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <button id="getLocationBtn" class="btn-location">
+                    <i class="fas fa-crosshairs"></i>
+                    Get My Location
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <button id="notifyHospitalsBtn" class="btn-notify" disabled>
+                    <i class="fas fa-bell"></i>
+                    Send SMS & Email Notifications
+                </button>
+            </div>
+        </div>
+        
+        <!-- Status Display -->
+        <div id="locationStatus" class="alert" style="display: none; margin-top: 1rem;"></div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="map-container">
+        <h4><i class="fas fa-map-marked-alt"></i> Interactive Hospital Map</h4>
+        <div id="hospitalMap"></div>
+    </div>
+
+    <!-- Results Container -->
+    <div class="results-container">
+        <h4><i class="fas fa-list"></i> Nearby Hospitals</h4>
+        
+        <!-- Loading State -->
+        <div id="hospitalsLoading" class="loading-spinner" style="display: none;">
+            <i class="fas fa-spinner"></i>
+            <p>Finding nearby hospitals...</p>
+        </div>
+        
+        <!-- Results -->
+        <div id="hospitalsResults">
+            <div id="hospitalsList">
+                <div class="empty-state">
+                    <i class="fas fa-location-arrow fa-3x mb-3" style="color: #d1d5db;"></i>
+                    <h4>Click "Get My Location" to find nearby hospitals</h4>
+                    <p>We'll show you partner hospitals with blood bank services in your area.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Hospital Location Manager -->
+<script src="{% static 'js/hospital-location.js' %}"></script>
+
+{% endblock content %}

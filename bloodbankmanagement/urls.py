@@ -25,6 +25,7 @@ urlpatterns = [
     path('chatbot/', include('chatbot.urls')),
     path('donor/',include('donor.urls')),
     path('patient/',include('patient.urls')),
+    path('api/', include('blood.api_urls')),
 
     
     path('',views.home_view,name=''),

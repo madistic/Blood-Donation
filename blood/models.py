@@ -3,6 +3,8 @@ from patient import models as pmodels
 from donor import models as dmodels
 from django.contrib.auth.models import User
 from datetime import date
+from django.utils import timezone
+import math
 
 class Stock(models.Model):
     bloodgroup=models.CharField(max_length=10)
@@ -73,9 +75,40 @@ class Hospital(models.Model):
     emergency_contact = models.CharField(max_length=20)
     blood_bank_available = models.BooleanField(default=True)
     is_partner = models.BooleanField(default=False)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True, 
+                                   help_text='Hospital latitude coordinate')
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True, 
+                                    help_text='Hospital longitude coordinate')
     
     def __str__(self):
         return self.name
+    
+    def calculate_distance(self, user_lat, user_lng):
+        """Calculate distance from user location using Haversine formula"""
+        if not (self.latitude and self.longitude):
+            return None
+            
+        # Haversine formula for distance calculation
+        R = 6371  # Earth's radius in kilometers
+        
+        lat1_rad = math.radians(float(user_lat))
+        lon1_rad = math.radians(float(user_lng))
+        lat2_rad = math.radians(float(self.latitude))
+        lon2_rad = math.radians(float(self.longitude))
+        
+        dlat = lat2_rad - lat1_rad
+        dlon = lon2_rad - lon1_rad
+        
+        a = (math.sin(dlat/2)**2 + 
+             math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon/2)**2)
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+        
+        return R * c
+    
+    @property
+    def has_coordinates(self):
+        """Check if hospital has valid coordinates"""
+        return self.latitude is not None and self.longitude is not None
 
 # Blood Camp Management System
 class BloodCamp(models.Model):
@@ -136,3 +169,60 @@ class CampRegistration(models.Model):
     
     def __str__(self):
         return f"{self.donor.get_name} - {self.camp.name}"
+
+
+class NotificationJob(models.Model):
+    """Model to track notification requests and their status"""
+    NOTIFICATION_TYPES = [
+        ('SMS', 'SMS'),
+        ('EMAIL', 'Email'),
+        ('BOTH', 'SMS and Email'),
+    ]
+    
+    STATUS_CHOICES = [
+        ('PENDING', 'Pending'),
+        ('PROCESSING', 'Processing'),
+        ('COMPLETED', 'Completed'),
+        ('FAILED', 'Failed'),
+    ]
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    user_longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    radius_km = models.PositiveIntegerField(default=10)
+    notification_type = models.CharField(max_length=10, choices=NOTIFICATION_TYPES, default='BOTH')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
+    retry_count = models.PositiveIntegerField(default=0)
+    max_retries = models.PositiveIntegerField(default=3)
+    error_message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"Notification for {self.user.username} - {self.status}"
+    
+    def mark_completed(self):
+        """Mark notification as completed"""
+        self.status = 'COMPLETED'
+        self.completed_at = timezone.now()
+        self.save()
+    
+    def mark_failed(self, error_message):
+        """Mark notification as failed with error message"""
+        self.status = 'FAILED'
+        self.error_message = error_message
+        self.save()
+    
+    def increment_retry(self):
+        """Increment retry count"""
+        self.retry_count += 1
+        self.save()
+    
+    @property
+    def can_retry(self):
+        """Check if notification can be retried"""
+        return self.retry_count < self.max_retries and self.status == 'FAILED'
