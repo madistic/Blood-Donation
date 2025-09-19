@@ -65,6 +65,7 @@ urlpatterns = [
     path('admin-hospitals', views.admin_hospitals_view, name='admin-hospitals'),
     path('sponsors', views.sponsors_list_view, name='sponsors'),
     path('hospitals', views.hospitals_list_view, name='hospitals'),
+    path('hospital-finder', views.hospital_finder_view, name='hospital-finder'),
     
     # Legal Pages
     path('blood/terms', views.terms_view, name='terms'),

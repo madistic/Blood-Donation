@@ -723,5 +723,15 @@ def hospitals_list_view(request):
         'local_hospitals': local_hospitals,
         'other_hospitals': other_hospitals,
         'user_city': user_city,
+        'all_hospitals': hospitals,
     }
     return render(request, 'blood/hospitals.html', context)
+
+@login_required
+def hospital_finder_view(request):
+    """View for hospital finder with location services"""
+    context = {
+        'page_title': 'Find Nearby Hospitals',
+        'page_description': 'Locate partner hospitals with blood bank services near you'
+    }
+    return render(request, 'blood/hospital_finder.html', context)

@@ -6,3 +6,8 @@ whitenoise==6.6.0
 gunicorn==21.2.0
 google-generativeai==0.3.2
 requests==2.31.0
+djangorestframework==3.14.0
+celery==5.3.4
+redis==5.0.1
+twilio==8.10.0
+sendgrid==6.10.0
