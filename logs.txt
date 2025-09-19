@@ -1,0 +1,251 @@
+# donor app
+New-Item -ItemType File -Path "donor/__init__.py" -Force
+New-Item -ItemType File -Path "donor/admin.py" -Force
+New-Item -ItemType File -Path "donor/apps.py" -Force
+New-Item -ItemType File -Path "donor/forms.py" -Force
+New-Item -ItemType File -Path "donor/models.py" -Force
+New-Item -ItemType File -Path "donor/tests.py" -Force
+New-Item -ItemType File -Path "donor/urls.py" -Force
+New-Item -ItemType File -Path "donor/views.py" -Force
+
+# donor migrations
+New-Item -ItemType File -Path "donor/migrations/0001_initial.py" -Force
+New-Item -ItemType File -Path "donor/migrations/0002_auto_20210213_1602.py" -Force
+New-Item -ItemType File -Path "donor/migrations/0003_donor_aadhaar_number.py" -Force
+New-Item -ItemType File -Path "donor/migrations/__init__.py" -Force
+
+# patient app
+New-Item -ItemType File -Path "patient/__init__.py" -Force
+New-Item -ItemType File -Path "patient/admin.py" -Force
+New-Item -ItemType File -Path "patient/apps.py" -Force
+New-Item -ItemType File -Path "patient/forms.py" -Force
+New-Item -ItemType File -Path "patient/models.py" -Force
+New-Item -ItemType File -Path "patient/tests.py" -Force
+New-Item -ItemType File -Path "patient/urls.py" -Force
+New-Item -ItemType File -Path "patient/views.py" -Force
+
+# patient migrations
+New-Item -ItemType Directory -Path ".\patient\migrations" -Force
+New-Item -ItemType File -Path ".\patient\migrations\__init__.py" -Force
+New-Item -ItemType File -Path ".\patient\migrations\0002_patient_aadhaar_number.py" -Force
+New-Item -ItemType File -Path ".\patient\migrations\0001_initial.py" -Force
+
+# Bloodbankmanagement
+New-Item -ItemType Directory -Path ".\bloodbankmanagement" -Force
+New-Item -ItemType File -Path ".\bloodbankmanagement\__init__.py" -Force
+New-Item -ItemType File -Path ".\bloodbankmanagement\asgi.py" -Force
+New-Item -ItemType File -Path ".\bloodbankmanagement\settings.py" -Force
+New-Item -ItemType File -Path ".\bloodbankmanagement\urls.py" -Force
+New-Item -ItemType File -Path ".\bloodbankmanagement\wsgi.py" -Force
+
+#templates
+New-Item -ItemType Directory -Path ".\templates\blood" -Force
+New-Item -ItemType Directory -Path ".\templates\donor" -Force
+New-Item -ItemType File -Path ".\templates\blood\admin_blood.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\admin_dashboard.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\admin_donation.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\admin_donor.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\admin_patient.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\admin_request.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\admin_request_history.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\adminbase.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\adminlogin.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\blood_camps.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\footer.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\hospitals.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\index.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\loginregister.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\logout.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\navbar.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\privacy.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\sponsors.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\terms.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\update_donor.html" -Force
+New-Item -ItemType File -Path ".\templates\blood\update_patient.html" -Force
+
+# patient and donor templates
+New-Item -ItemType Directory -Path ".\templates\donor" -Force
+New-Item -ItemType Directory -Path ".\templates\patient" -Force
+New-Item -ItemType File -Path ".\templates\donor\certificates.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\donate_blood.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\donation_history.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\donor_dashboard.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\donorbase.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\donorlogin.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\donorsignup.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\makerequest.html" -Force
+New-Item -ItemType File -Path ".\templates\donor\request_history.html" -Force
+New-Item -ItemType File -Path ".\templates\patient\makerequest.html" -Force
+New-Item -ItemType File -Path ".\templates\patient\my_request.html" -Force
+New-Item -ItemType File -Path ".\templates\patient\patient_dashboard.html" -Force
+New-Item -ItemType File -Path ".\templates\patient\patientbase.html" -Force
+New-Item -ItemType File -Path ".\templates\patient\patientlogin.html" -Force
+New-Item -ItemType File -Path ".\templates\patient\patientsignup.html" -Force
+
+
+# root
+New-Item -ItemType File -Path ".\PRODUCTION_DEPLOYMENT.md" -Force
+New-Item -ItemType File -Path ".\README.md" -Force
+New-Item -ItemType File -Path ".\VERCEL_DEPLOYMENT_COMPLETE.md" -Force
+New-Item -ItemType File -Path ".\bloodbankmanagement.zip" -Force
+New-Item -ItemType File -Path ".\build_files.sh" -Force
+New-Item -ItemType File -Path ".\db.sqlite3" -Force
+New-Item -ItemType File -Path ".\manage.py" -Force
+New-Item -ItemType File -Path ".\requirements.txt" -Force
+New-Item -ItemType File -Path ".\vercel.json" -Force
+
+#blood
+New-Item -ItemType Directory -Path ".\blood" -Force
+New-Item -ItemType Directory -Path ".\blood\management\commands" -Force
+New-Item -ItemType Directory -Path ".\blood\migrations" -Force
+New-Item -ItemType File -Path ".\blood\management\commands\__init__.py" -Force
+New-Item -ItemType File -Path ".\blood\migrations\0001_initial.py" -Force
+New-Item -ItemType File -Path ".\blood\migrations\0002_bloodrequest.py" -Force
+New-Item -ItemType File -Path ".\blood\migrations\0003_auto_20210213_1053.py" -Force
+New-Item -ItemType File -Path ".\blood\migrations\0004_bloodrequest_date.py" -Force
+New-Item -ItemType File -Path ".\blood\migrations\0005_hospital_sponsor_certificate_bloodcamp_and_more.py" -Force
+New-Item -ItemType File -Path ".\blood\migrations\__init__.py" -Force
+New-Item -ItemType File -Path ".\blood\__init__.py" -Force
+New-Item -ItemType File -Path ".\blood\admin.py" -Force
+New-Item -ItemType File -Path ".\blood\apps.py" -Force
+New-Item -ItemType File -Path ".\blood\forms.py" -Force
+New-Item -ItemType File -Path ".\blood\models.py" -Force
+New-Item -ItemType File -Path ".\blood\tests.py" -Force
+New-Item -ItemType File -Path ".\blood\views.py" -Force
+
+
+
+INFO 2025-09-06 12:59:24,066 autoreload 15556 7916 Watching for file changes with StatReloader
+INFO 2025-09-06 12:59:58,767 autoreload 1956 3532 Watching for file changes with StatReloader
+ERROR 2025-09-06 13:00:06,074 log 1956 6332 Internal Server Error: /logout
+Traceback (most recent call last):
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\templatetags\static.py", line 116, in render
+    url = self.url(context)
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\templatetags\static.py", line 113, in url
+    return self.handle_simple(path)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\templatetags\static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\contrib\staticfiles\storage.py", line 203, in url
+    return self._url(self.stored_name, name, force)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\contrib\staticfiles\storage.py", line 182, in _url
+    hashed_name = hashed_name_func(*args)
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\contrib\staticfiles\storage.py", line 513, in stored_name
+    raise ValueError(
+        "Missing staticfiles manifest entry for '%s'" % clean_name
+    )
+ValueError: Missing staticfiles manifest entry for 'css/modern.css'
+ERROR 2025-09-06 13:00:10,098 log 1956 6332 Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\System.me\internal project\qocdrer\fr\ret\blood\views.py", line 80, in home_view
+    return render(request,'blood/index.html')
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\loader_tags.py", line 208, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 177, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\templatetags\static.py", line 116, in render
+    url = self.url(context)
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\templatetags\static.py", line 113, in url
+    return self.handle_simple(path)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\templatetags\static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\contrib\staticfiles\storage.py", line 203, in url
+    return self._url(self.stored_name, name, force)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\contrib\staticfiles\storage.py", line 182, in _url
+    hashed_name = hashed_name_func(*args)
+  File "E:\System.me\App-Data\python\python data\Lib\site-packages\django\contrib\staticfiles\storage.py", line 513, in stored_name
+    raise ValueError(
+        "Missing staticfiles manifest entry for '%s'" % clean_name
+    )
+ValueError: Missing staticfiles manifest entry for 'css/modern.css'
+INFO 2025-09-06 13:01:27,581 autoreload 1956 3532 E:\System.me\internal project\qocdrer\fr\ret\bloodbankmanagement\settings.py changed, reloading.
+INFO 2025-09-06 13:01:28,414 autoreload 10860 12952 Watching for file changes with StatReloader
+INFO 2025-09-06 13:08:03,588 autoreload 2300 11996 Watching for file changes with StatReloader
+INFO 2025-09-06 18:22:42,705 autoreload 11332 13272 Watching for file changes with StatReloader
+WARNING 2025-09-06 18:22:47,733 log 11332 14224 Not Found: /favicon.ico
+INFO 2025-09-06 19:44:10,793 autoreload 26528 27124 Watching for file changes with StatReloader
+INFO 2025-09-06 19:47:32,283 autoreload 17492 18816 Watching for file changes with StatReloader
+INFO 2025-09-06 19:50:36,600 autoreload 18672 9304 Watching for file changes with StatReloader
+WARNING 2025-09-06 19:50:54,258 log 18672 13208 Not Found: /favicon.ico
+INFO 2025-09-06 20:12:53,784 autoreload 25264 22200 Watching for file changes with StatReloader
+WARNING 2025-09-06 20:12:58,732 log 25264 17488 Not Found: /favicon.ico
+INFO 2025-09-06 22:59:43,702 autoreload 22868 16900 Watching for file changes with StatReloader
+WARNING 2025-09-06 22:59:55,290 log 22868 13508 Not Found: /favicon.ico
+INFO 2025-09-19 09:21:35,341 autoreload 14452 7916 Watching for file changes with StatReloader
+WARNING 2025-09-19 09:21:44,881 log 14452 19044 Not Found: /favicon.ico
+INFO 2025-09-19 09:23:54,010 autoreload 13624 16880 Watching for file changes with StatReloader
+WARNING 2025-09-19 09:24:12,063 log 13624 10248 Not Found: /favicon.ico
+INFO 2025-09-19 15:12:03,507 autoreload 10388 2260 Watching for file changes with StatReloader
+INFO 2025-09-19 15:17:55,217 autoreload 18800 19180 Watching for file changes with StatReloader
+INFO 2025-09-19 15:25:09,111 autoreload 9576 10480 Watching for file changes with StatReloader
+WARNING 2025-09-19 15:25:19,517 log 9576 12348 Not Found: /favicon.ico
+ERROR 2025-09-19 15:25:26,979 views 9576 12348 Gemini API error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+ERROR 2025-09-19 15:25:45,230 views 9576 12348 Gemini API error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+ERROR 2025-09-19 15:26:10,489 views 9576 12348 Gemini API error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+ERROR 2025-09-19 15:26:31,880 views 9576 12348 Gemini API error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+ERROR 2025-09-19 15:26:49,398 views 9576 12348 Gemini API error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
